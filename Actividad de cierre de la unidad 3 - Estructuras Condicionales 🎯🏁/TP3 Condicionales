@@ -1,4 +1,4 @@
-#1) Escribir un programa que solicite la edad del usuario. Si el usuario es mayor de 18 años, 
+       #1) Escribir un programa que solicite la edad del usuario. Si el usuario es mayor de 18 años, 
 #deberá mostrar un mensaje en pantalla que diga “Es mayor de edad”.
 print("Actividad 1")
 print("¡Hola!")
@@ -102,7 +102,7 @@ print()
 # pantalla.
 print("Actividad 7")
 print("¡Hola!")
-frase=str(input("Escribe la palabrao frase que desees: "))
+frase=str(input("Escribe la palabra o frase que desees: "))
 ultima_letra = frase.strip()[-1].lower()
 vocal={"a","e","i","o","u"}
 if ultima_letra in vocal:
@@ -111,17 +111,6 @@ else:
     print(frase)
 print("¡Hasta Luego!")
 print()
-
-#8) Escribir un programa que solicite al usuario que ingrese su nombre y el número 1, 2 o 3 
-# dependiendo de la opción que desee: 
-# 1. Si quiere su nombre en mayúsculas. Por ejemplo: PEDRO. 
-# 2. Si quiere su nombre en minúsculas. Por ejemplo: pedro. 
-# 3. Si quiere su nombre con la primera letra mayúscula. Por ejemplo: Pedro. 
-# El programa debe transformar el nombre ingresado de acuerdo a la opción seleccionada por el 
-# usuario e imprimir el resultado por pantalla. Nota: investigue uso de las funciones upper(), 
-# lower() y title() de Python para convertir entre mayúsculas y minúsculas.
-print("Actividad 8")
-print("¡Hola!")
 
 #8) Escribir un programa que solicite al usuario que ingrese su nombre y el número 1, 2 o 3 
 # dependiendo de la opción que desee: 
@@ -138,7 +127,7 @@ if nombre.strip() == "":
     print("No has ingresado tu nombre")
     exit()
 
-print("Gracias, ahora me gustaría qué opción eliges")
+print("Gracias, ahora me gustaría que elijas una opción")
 print("Sí deseas todo escrito en mayúsculas, ingresa 1")
 print("Sí deseas todo escrito en minúsculas, ingresa 2")
 print("Sí deseas sólo la primera en mayúscula, ingresa 3")
@@ -267,6 +256,3 @@ print("¡Hasta Luego!")
 print()
 
          
-
-
-
