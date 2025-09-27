@@ -94,6 +94,8 @@ while opcion!="3":
                                 print(f"{digito} x 2^{potencia} = {paso}")
                             potencia += 1
 
+                    if explicacion == "s":
+                        print("     Sumanos...")
 
                     # Dar el resultado al usuario
                     print(f"\nEl número binario {num_binario} equivale a {decimal} en decimal")
