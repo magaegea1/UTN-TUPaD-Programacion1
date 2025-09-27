@@ -18,7 +18,7 @@ correcto=""
 titulo=""
 
 
-print("¡Hola! \n    \n    📚 🏫 Bienvenido/a a la Biblioteca de la Escuela 🏫 📚") 
+print("¡Hola! \n    \n            Bienvenido/a a la Biblioteca de la Escuela") 
 
 while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
     # Mostrar al usuario las opciones disponibles del menú
@@ -83,7 +83,7 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
                 seguir = input("('s' para agregar más libros, de lo contrario presiona cualquier tecla): ").strip().lower()
                 if seguir != "s":
                     continuar_agregando = False
-                    input("\nVolvemos al menú principal 📚 🏫\nPresioná Enter para continuar...")
+            input("\nVolvemos al menú principal \nPresioná Enter para continuar...")
 
         case "2":
             print("\nHas seleccionado la opción 2: 🔢 Ingresar ejemplares:")
@@ -93,7 +93,7 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
             if not titulos:
                 print("\nEl catálogo está vacío. No hay libros disponibles para actualizar ejemplares.")
                 print("Podés agregar títulos desde el menú principal")
-                input("\nPresioná Enter para volver al menú principal 📚 🏫")
+                input("\nPresioná Enter para volver al menú principal")
                 continuar_agregando=False          # Para salir
     
     
@@ -126,7 +126,7 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
                 seguir=input("('s' para agregar más ejemplares, de lo contrario presiona cualquier tecla): ").strip().lower()
                 if seguir!="s":
                     continuar_agregando=False
-            input("\nVolvemos al menú principal 📚 🏫\n Presioná Enter para continuar...")
+            input("\nVolvemos al menú principal \nPresioná Enter para continuar...")
            
         case "3":
             print("\nHas seleccionado la opción 3: 📂 Mostrar catálogo") 
@@ -140,7 +140,7 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
                 for i in range(len(titulos)):            # Recorremos las dos listas de manera paralela con los índices correctos
                     print(f"{titulos[i]}: {ejemplares[i]} ejemplares")
             
-            input("\nVolvemos al menú principal 📚 🏫\n Presioná Enter para continuar...")
+            input("\nVolvemos al menú principal \nPresioná Enter para continuar...")
 
 
         case "4":
@@ -172,7 +172,7 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
                     seguir=input("('s' para consultar, de lo contrario presiona cualquier tecla): ").strip().lower()
                     if seguir!="s":
                         continuar_agregando=False
-            input("\nVolvemos al menú principal 📚 🏫\n Presioná Enter para continuar...")
+            input("\nVolvemos al menú principal \n Presioná Enter para continuar...")
 
 
         case "5":
@@ -190,7 +190,7 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
             if not agotados:
                 print("En el catálogo no hay ningún libro agotado")
 
-            input("\nVolvemos al menú principal 📚 🏫\n Presioná Enter para continuar...")
+            input("\nVolvemos al menú principal\n Presioná Enter para continuar...")
 
 
         case "6": 
@@ -247,7 +247,7 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
                 if seguir!="s":
                     continuar_agregando=False
             
-            input("\nVolvemos al menú principal 📚 🏫\n Presioná Enter para continuar...")
+            input("\nVolvemos al menú principal\n Presioná Enter para continuar...")
 
         case "7":
 
@@ -258,7 +258,7 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
             if not titulos:             # Validar que el catálogo no esté vacío
                 print("\nEl catálogo está vacío. No hay libros disponibles para actualizar ejemplares.")
                 print("Podés agregar títulos desde el menú principal")
-                input("\nPresioná Enter para volver al menú principal 📚 🏫")
+                input("\nPresioná Enter para volver al menú principal")
                 continuar_agregando = False
 
             while continuar_agregando:
@@ -304,11 +304,11 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
                 seguir = input("('s' para continuar, de lo contrario presiona cualquier tecla para salir al menú principal): ").strip().lower()
                 if seguir != "s":
                     continuar_agregando = False
-            input("\nVolvemos al menú principal 📚 🏫\nPresioná Enter para continuar...")
+            input("\nVolvemos al menú principal \nPresioná Enter para continuar...")
         case "8":
             print("👋¡Gracias y Hasta pronto!")
         
         case _:
             print("\nDisculpa, pero la opción ingresada no es válida \nInténtalo nuevamente\n")
 
-            input("\nVolvemos al menú principal 📚 🏫\n Presioná Enter para continuar...")
+            input("\nVolvemos al menú principal \nPresioná Enter para continuar...")
