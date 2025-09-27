@@ -99,7 +99,7 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
     
             while continuar_agregando:
 
-                titulo=input("\n¿Cuál es el libro al que querés agregar ejemplares?: ").title() 
+                titulo=input("\n¿Cuál es el libro al que querés agregar ejemplares?: ").strip().title() 
                 # Validar que no esté vacío
                 while not titulo:
                     print("El título no puede estar vacío. Intentá nuevamente")
@@ -155,7 +155,7 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
                     continuar_agregando=False
                     
                 else:
-                    titulo=input("\n¿Cuál es el libro del que querés consultar la disponibilidad de ejemplares?: ").title() 
+                    titulo=input("\n¿Cuál es el libro del que querés consultar la disponibilidad de ejemplares?: ").strip().title() 
                     # Validar que no esté vacío
                     while not titulo:
                         print("El título no puede estar vacío. Intentá nuevamente")
@@ -306,7 +306,7 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
                     continuar_agregando = False
             input("\nVolvemos al menú principal \nPresioná Enter para continuar...")
         case "8":
-            print("👋¡Gracias y Hasta pronto!")
+            print("¡Gracias y Hasta pronto!")
         
         case _:
             print("\nDisculpa, pero la opción ingresada no es válida \nInténtalo nuevamente\n")
