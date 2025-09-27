@@ -8,7 +8,7 @@ print ("vinculado a su número correspondiente de copias utilizando el mismo ín
 print ("Se debe utilizar un bucle while para navegar por las opciones del menú hasta que el usuario elija salir.")
 print ("----------------------")
 
-print ("\n 📚🏫 Biblioteca Escolar 🏫📚\n")
+print ("\nBiblioteca Escolar\n")
 
 # Definir las listas
 titulos=[]
@@ -30,7 +30,7 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
     "5) ❌ Listar agotados: ¿Querés saber cuáles libros están agotados?\n" \
     "6) 📥 Agregar título + ejemplares: ¿Te gustaría incorporar un nuevo libro y elegir cuántas copias agregar?\n" \
     "7) ✍️  Actualizar ejemplares (préstamo/devolución): ¿Hay algún préstamo o devolución que registrar?\n" \
-    "8) 🛎️  Salir 🛎️: Si ya terminaste y deseas salir\n")
+    "8) 🛎️  Salir: Si ya terminaste y deseas salir\n")
 
     opcion_menu=input("¿Cuál es el número de la opción que deseas? ") # El usuario ingresa su elección
     opcion_menu=opcion_menu.strip()   # Para eliminar espacios que se hayan ingresado por error
@@ -63,7 +63,7 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
                     
                 if titulo_nuevo in titulos:
                     # Validar si el libro ya existía en la lista
-                    print(f"El título '{titulo_nuevo}' ya existe en el catálogo. 🌱 Podés agregar ejemplares si lo deseás.")
+                    print(f"El título '{titulo_nuevo}' ya existe en el catálogo. Podés agregar ejemplares si lo deseás.")
                 else:
                     titulos.append(titulo_nuevo)     # Agregar libro nuevo a la lista de titulos
                     indice = titulos.index(titulo_nuevo)
@@ -77,13 +77,13 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
                     cantidad_ejemplares = int(cantidad_ejemplares)
                     ejemplares.insert(indice, cantidad_ejemplares)
 
-                    print(f"\nSe ha agregado el libro: '{titulos[indice]}' con {ejemplares[indice]} ejemplares al catálogo adecuadamente 🎯")
+                    print(f"\nSe ha agregado el libro: '{titulos[indice]}' con {ejemplares[indice]} ejemplares al catálogo adecuadamente")
 
                 print("\n¿Deseas agregar más libros al catálogo?")    
                 seguir = input("('s' para agregar más libros, de lo contrario presiona cualquier tecla): ").strip().lower()
                 if seguir != "s":
                     continuar_agregando = False
-                    input("\n🌟 Volvemos al menú principal 📚 🏫\nPresioná Enter para continuar...")
+                    input("\nVolvemos al menú principal 📚 🏫\nPresioná Enter para continuar...")
 
         case "2":
             print("\nHas seleccionado la opción 2: 🔢 Ingresar ejemplares:")
@@ -116,7 +116,7 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
                     indice=titulos.index(titulo)    # Averiguar el índice correcto del nuevo título para evitar errores
                     print(f"\nSe van a agregar {cantidad_ejemplares} ejemplares al libro {titulo}")
                     ejemplares[indice] += cantidad_ejemplares           # Agregar los ejemplares al título elegido
-                    print(f"Ahora hay {ejemplares[indice]} ejemplares del libro {titulo}, se han agregado los ejemplares adecuadamente 🎯")
+                    print(f"Ahora hay {ejemplares[indice]} ejemplares del libro {titulo}, se han agregado los ejemplares adecuadamente")
                     
                 else:
                     print("\nEse título no existe en el catálogo")
@@ -140,7 +140,7 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
                 for i in range(len(titulos)):            # Recorremos las dos listas de manera paralela con los índices correctos
                     print(f"{titulos[i]}: {ejemplares[i]} ejemplares")
             
-            input("\n🌟 Volvemos al menú principal 📚 🏫\n Presioná Enter para continuar...")
+            input("\nVolvemos al menú principal 📚 🏫\n Presioná Enter para continuar...")
 
 
         case "4":
@@ -190,7 +190,7 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
             if not agotados:
                 print("En el catálogo no hay ningún libro agotado")
 
-            input("\n🌟 Volvemos al menú principal 📚 🏫\n Presioná Enter para continuar...")
+            input("\nVolvemos al menú principal 📚 🏫\n Presioná Enter para continuar...")
 
 
         case "6": 
@@ -219,7 +219,7 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
                     titulos.append(titulo_nuevo)     # Agregar libro nuevo a la lista de titulos
                     indice=titulos.index(titulo_nuevo)    # Averiguar el índice correcto del nuevo título para evitar errores
                                 
-                    print(f"\nSe ha agregado el libro: '{titulos[indice]}' al catálogo adecuadamente 🎯")
+                    print(f"\nSe ha agregado el libro: '{titulos[indice]}' al catálogo adecuadamente")
 
                     ejemplares.insert(indice,0)    # Se utiliza para que ambas listas estén indexadas adecuadamente y para poder en la siguiente 
                                                                 # parte, agregar más libros si ya ese libro existían previamente
@@ -240,14 +240,14 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
                 print(f"\nSe van a agregar {cantidad_ejemplares} ejemplares al libro {titulo_nuevo}")
                 ejemplares[indice] += cantidad_ejemplares    # Para agregar ejemplares sin importar si el libro existía antes o no en el catálogo
 
-                print(f"\nAhora hay {ejemplares[indice]} ejemplares del libro {titulos[indice]} \nSe ha agregado todo adecuadamente 🎯")
+                print(f"\nAhora hay {ejemplares[indice]} ejemplares del libro {titulos[indice]} \nSe ha agregado todo adecuadamente")
                     
                 print("\n¿Deseas agregar más libros al catálogo?")    
                 seguir=input("('s' para agregar más libros, de lo contrario presiona cualquier tecla): ").strip().lower()
                 if seguir!="s":
                     continuar_agregando=False
             
-            input("\n🌟 Volvemos al menú principal 📚 🏫\n Presioná Enter para continuar...")
+            input("\nVolvemos al menú principal 📚 🏫\n Presioná Enter para continuar...")
 
         case "7":
 
@@ -280,14 +280,14 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
                         if actualizar == "d":         # Hacer las devoluciones de a un ejemplar y actualizar
                             print(f"\nSe va a devolver un ejemplar del libro '{titulo}'")
                             ejemplares[indice] += 1
-                            print(f"Ahora hay {ejemplares[indice]} ejemplares del libro '{titulos[indice]}' 🎯")
+                            print(f"Ahora hay {ejemplares[indice]} ejemplares del libro '{titulos[indice]}'")
                             valido = True
 
                         elif actualizar == "p":        # Hacer los préstamos de a un ejemplar y actualizar
                             if ejemplares[indice] >= 1:   # Validar que hayan suficientes títulos para prestar
                                 print(f"\nSe va a retirar 1 ejemplar del libro '{titulo}' por préstamo")
                                 ejemplares[indice] -= 1
-                                print(f"Ahora hay {ejemplares[indice]} ejemplares del libro '{titulo}' 🎯")
+                                print(f"Ahora hay {ejemplares[indice]} ejemplares del libro '{titulo}'")
                                 valido = True
                             else:              # Avisar al usuario que no hay suficientes títulos para prestar
                                 print(f"\nLo siento, no hay suficientes ejemplares de '{titulo}'")
@@ -304,11 +304,11 @@ while opcion_menu!="8":    # Inicio del menú de opciones con sus acciones
                 seguir = input("('s' para continuar, de lo contrario presiona cualquier tecla para salir al menú principal): ").strip().lower()
                 if seguir != "s":
                     continuar_agregando = False
-            input("\n🌟 Volvemos al menú principal 📚 🏫\nPresioná Enter para continuar...")
+            input("\nVolvemos al menú principal 📚 🏫\nPresioná Enter para continuar...")
         case "8":
-            print("👋¡Gracias y Hasta pronto!📤")
+            print("👋¡Gracias y Hasta pronto!")
         
         case _:
             print("\nDisculpa, pero la opción ingresada no es válida \nInténtalo nuevamente\n")
 
-            input("\n🌟 Volvemos al menú principal 📚 🏫\n Presioná Enter para continuar...")
+            input("\nVolvemos al menú principal 📚 🏫\n Presioná Enter para continuar...")
