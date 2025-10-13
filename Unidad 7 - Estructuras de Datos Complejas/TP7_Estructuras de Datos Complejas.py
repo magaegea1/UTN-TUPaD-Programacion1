@@ -66,9 +66,10 @@ def solicitar_numero(nombre):
         try:
             numero=int(numero_texto)
             valido=True
+            return numero
         except ValueError:
             print("Debes ingresar un número válido...")
-    return numero
+    
 
 # Cargar 5 contactos con nombre como clave y número como valor
 print("Vamos a agregar 5 contactos a la agenda\n")
@@ -293,12 +294,11 @@ def numero_valido():
             numero=int(num_texto)
             if 1<=numero<=1000:
                 num=True
+                return numero
             else:
                 print("\nDisculpa, debe ingresar un número entre 1 y 1000: ", end="")
         except ValueError:
-            print("\nDisculpa, no se ha ingresado un número válido, inténtalo de nuevo: ", end="")
-
-    return numero        
+            print("\nDisculpa, no se ha ingresado un número válido, inténtalo de nuevo: ", end="")        
         
 salir=False
 # Presentar al usuario un menú de opciones
