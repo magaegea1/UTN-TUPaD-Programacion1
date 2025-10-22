@@ -1,5 +1,5 @@
 #Tp 8 - Estructuras de Datos Complejos - TUPaD
-print("--- TP 7 - Estructuras de Datos Complejos ---\n")
+print("--- TP 8 - Estructuras de Datos Complejos ---\n")
 
 #-------------------------------------------------------------------------
 # Actividad 1. Crear archivo inicial con productos: Crear un archivo de texto llamado productos.txt 
