@@ -500,6 +500,8 @@ def realizar_prestamo(catalogo_lista):
                         if quiere_salir=="s":
                                 print("\tVolvemos al menú principal")
                                 return
+                        else:
+                            break
 
 
         # Si el libro no es válido, dar la opción de intentar con otro o regresar al menú principal
