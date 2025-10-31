@@ -11,15 +11,20 @@ print ("-"*40)
 print ("\nBiblioteca Escolar Modernizada\n")
 print ("-"*40)
 
-# Importar módulos:
-import csv  # Para trabajar con archivos CSV de forma segura y estructurada
-import os   # Para verificar si el archivo existe sin usar excepciones (que están prohibidas en el parcial)
+# ******************* Importar módulos: *******************
+# Para trabajar con archivos CSV de forma segura y estructurada
+import csv  
+# Para verificar si el archivo existe sin usar excepciones (que están prohibidas en el parcial)
+import os   
+# Para ordenar listas de diccionarios por clave (permitido por las reglas del parcial)
+from operator import itemgetter  
 
 
+# *********** Definir el nombre del archivo CSV que almacena el catálogo y mostrarlo al iniciar el programa
 NOMBRE_ARCHIVO = "catalogo.csv"
 print("Archivo de trabajo:", NOMBRE_ARCHIVO)
 
-# *** Funciones que trabajan directamente con el archivo csv ***
+# ******************* Funciones que trabajan directamente con el archivo csv *******************
 
 # Función para cargar el catálogo desde el archivo csv
 def obtener_catalogo_desde_csv():
@@ -86,7 +91,7 @@ def guardar_catalogo_en_csv(catalogo_lista):
     return "El archivo catalogo.csv ha sido actualizado correctamente"
 
 
-# *** Validaciones: ***
+# ******************* Validaciones: *******************
 
 # Función para validar que se ingrese una cadena de texto que no esté vacía, limpiar y normalizar con title.
 def validar_texto_vacio_y_normalizar():
@@ -158,8 +163,7 @@ def validar_entero_positivo_hasta_100():
 
 
 
-# *** Opciones del Menú: ***
-
+# ******************* Funciones de las Opciones del Menú: *******************
 
 # 1. Función: Ingresar títulos (múltiples): permite cargar varios libros de una vez.
 #             Permite ingresar varios libros en una misma sesión hasta que el usuario decida salir
@@ -188,7 +192,7 @@ def ingresar_titulos_multiples(catalogo_lista):
     print("\n1. Ingresar títulos (múltiples): permite cargar varios libros de una vez.")            
     print("\tPor cada libro, debe indicar:")
     print("\t\t- El Título (tenga cuidado de que no esté vacío ni duplicado)")
-    print("\t\t- La Cantidad: entre 0 y 100")
+    print("\t\t- La Cantidad: entre 1 y 100")
     
     #Lista para armar el lote de libros
     lote_titulos=[]
@@ -249,6 +253,10 @@ def ingresar_ejemplares(catalogo_lista):
     - Actualiza la lista 'catalogo_lista' en memoria y el archivo 'catalogo.csv' 
       mediante la función guardar_catalogo_en_csv().
     """
+    # Validar que el catálogo no esté vacío
+    if not catalogo_lista:
+        print("\tEl catálogo está vacío.")
+        return
 
     print("\n2. Ingresar ejemplares: sumar una cantidad a un título existente")            
     print("\tPor cada libro, debe indicar:")
@@ -268,18 +276,9 @@ def ingresar_ejemplares(catalogo_lista):
                 print("\tVolvemos al menú principal")
                 return
         else:
-            while True:
-                print(f"\n\tPor favor, indique la cantidad de libros de {titulo_existente} que quiere cargar: ", end="")
-                cantidad=validar_entero_positivo_hasta_100()
-                if cantidad==0:
-                    print("\tDisculpe, pero no se puede agregar 0 ejemplares")
-                    quiere_salir = input("\tSi desea salir al menú principal presione 's': ").strip().lower()
-                    if quiere_salir=="s":
-                        print("\tVolvemos al menú principal")
-                        return
-                else:
-                    break
-            
+            print(f"\n\tPor favor, indique la cantidad de libros de {titulo_existente} que quiere cargar: ", end="")
+            cantidad=validar_entero_positivo_hasta_100()
+        
             for libro in catalogo_lista:
                 if libro["TITULO"].strip().title()==titulo_existente:
                     libro["CANTIDAD"]+=cantidad
@@ -287,7 +286,8 @@ def ingresar_ejemplares(catalogo_lista):
 
             print(f"\n\t✅ {guardar_catalogo_en_csv(catalogo_lista)}")
             print(f"\tDel libro: {titulo_existente} se han agregado {cantidad} ejemplares")
-            quiere_salir = input("\n\tSi desea salir al menú principal presione 's': ").strip().lower()
+            print("\n\t¿Desea agregar más ejemplares a algún libro o salir al menú principal?")
+            quiere_salir = input("\tSi desea salir al menú principal presione 's': ").strip().lower()
             if quiere_salir=="s":
                 print("\tVolvemos al menú principal")
                 return
@@ -295,31 +295,34 @@ def ingresar_ejemplares(catalogo_lista):
                 print("\tContinuamos cargando más ejemplares...")
 
 
-
-
-
 # 3. Función: Mostrar catálogo: listar todos los libros con su stock actual
 def mostrar_catalogo(catalogo_lista):
     """
-    Muestra todos los libros del catálogo con su cantidad disponible.
+    Muestra todos los libros del catálogo con su cantidad disponible, ordenados y enumerados.
     """
-    print("\nCatálogo actual:")
+    print("\nCatálogo:")
+    
+    # Validar que el catálogo no esté vacío
     if not catalogo_lista:
         print("\tEl catálogo está vacío.")
         return
+    
+    # Mostrar catálogo ordenado y enumerado
+    else:
+        print(f"\tActualmente hay {len(catalogo_lista)} títulos en el catálogo: ")
 
-    for libro in sorted(catalogo_lista):
-        titulo = libro["TITULO"]
-        cantidad = libro["CANTIDAD"]
-        print(f"\t- {titulo}: {cantidad} ejemplares")
-
+    for i, libro in enumerate(sorted(catalogo_lista, key=itemgetter("TITULO")), start=1):
+        print(f"\t{i}. {libro['TITULO']}: {libro['CANTIDAD']} ejemplares")
 
 # 4. Función: Consultar disponibilidad: buscar un título y mostrar cuántos ejemplares hay disponibles
 def consultar_disponibilidad(catalogo_lista):
     """
     Buscar un título y mostrar cuántos ejemplares hay disponibles
     """
+
     print("\n\tDisponibilidad:")
+    
+    # Validar que el catálogo no esté vacío
     if not catalogo_lista:
         print("\tEl catálogo está vacío.")
         return
@@ -349,18 +352,24 @@ def listar_agotados(catalogo_lista):
     Buscar los títulos que están agotados y mostrarlos por pantalla
     """
     print("\n\tLibros Agotados:")
+
+    # Validar que el catálogo no esté vacío
     if not catalogo_lista:
         print("\tEl catálogo está vacío.")
         return
 
-    #Bucle para buscar libros agotados y mostrarlos en pantalla
+    #Bucle para buscar libros agotados y mostrarlos en pantalla en orden alfabético
     contador=0
-    for libro in sorted(catalogo_lista):
+    for libro in sorted(catalogo_lista, key=itemgetter("TITULO")):
         if libro["CANTIDAD"] == 0:
             print(f"\t- {libro['TITULO']}: {libro['CANTIDAD']} ejemplares")
             contador+=1
+    
     if contador==0:
-        print("\tNo hay libros agotados")    
+        print("\tNo hay libros agotados")
+    else: 
+        print(f"\tHay {contador} libros agotados en total")    
+    
     print("\tVolvemos al menú principal")
     return
 
@@ -418,10 +427,137 @@ def ingresar_titulos_individualmente(catalogo_lista):
                 print("\tContinuamos cargando más libros...")
 
 # 7. Función: Actualizar ejemplares (préstamo/devolución)
+def actualizar_ejemplares(catalogo_lista):
+    """
+    Valida que el catálogo no esté vacío.
+    Permite al usuario realizar un préstamo o una devolución de un ejemplar
+    
+    """
+    print("\nActualizar ejemplares:")
+    print("\t1. Préstamo")
+    print("\t2. Devolución")
+
+    # Validar que el catálogo no esté vacío
+    if not catalogo_lista:
+        print("\tEl catálogo está vacío.")
+        return
+
+    valido=False
+    while not valido:
+        opcion = input("\tSeleccione una opción (1 o 2): ").strip()
+        if opcion == "1":
+            realizar_prestamo(catalogo_lista)
+            valido=True
+        elif opcion == "2":
+            realizar_devolucion(catalogo_lista)
+            valido=True
+        else:
+            print("\tOpción inválida. Intente nuevamente... ")
+            
+    return
+
+def realizar_prestamo(catalogo_lista):
+    """
+    Permite al usuario pedir prestado un libro del catálogo.
+
+    - Solicita el título deseado, lo limpia, normaliza y verifica su existencia.
+    - Si hay ejemplares disponibles, descuenta uno y actualiza el archivo CSV.
+
+    Parámetros:
+    - catalogo_lista: lista de diccionarios que representa el catálogo de libros.
+
+    Retorno:
+    - No devuelve valores explícitos.
+    - Actualiza la lista 'catalogo_lista' en memoria y el archivo 'catalogo.csv' 
+      mediante la función guardar_catalogo_en_csv().
+    """
+
+    # Validar título, existencia y stock > 0
+
+    while True:
+        print("\n\tPor favor, indique el título del libro que desea solicitar: ", end="")
+        libro_para_prestamo=validar_texto_vacio_y_normalizar()
+        if validar_titulo_ya_existe(catalogo_lista, libro_para_prestamo):
+            encontrado=False
+            for libro in catalogo_lista:
+                if libro["TITULO"] == libro_para_prestamo:
+                    print(f"\t- {libro_para_prestamo}: {libro['CANTIDAD']} ejemplares")
+                    encontrado=True
+
+                    # Libro encontrado -> Prestar un libro: restar 1
+                    if libro["CANTIDAD"] > 0:
+                        libro["CANTIDAD"] -= 1
+                        guardar_catalogo_en_csv(catalogo_lista)
+                        print(f"\n\t✅ Se ha realizado el préstamo de '{libro_para_prestamo}'.")
+                        print(f"\tQuedan {libro['CANTIDAD']} ejemplares disponibles.")
+                        return
+
+                        
+                    else:
+                        print("\n\tDisculpe, pero ese libro está agotado")
+                    
+                        quiere_salir = input("\t¿Desea pedir otro libro? (presione 's' para salir): ").strip().lower()
+                        if quiere_salir=="s":
+                                print("\tVolvemos al menú principal")
+                                return
 
 
+        # Si el libro no es válido, dar la opción de intentar con otro o regresar al menú principal
+        else:
+            print("\n\tDisculpe, pero ese libro no está en el inventario")
+        
+            quiere_salir = input("\t¿Desea pedir otro libro? (presione 's' para salir): ").strip().lower()
+            if quiere_salir=="s":
+                    print("\tVolvemos al menú principal")
+                    return
 
 
+def realizar_devolucion(catalogo_lista):
+    """
+    Permite al usuario pedir devolver un libro del catálogo.
+
+    - Solicita el título deseado, lo limpia, normaliza y verifica su existencia.
+    - Agrega un ejemplar del libro y actualiza el archivo CSV.
+
+    Parámetros:
+    - catalogo_lista: lista de diccionarios que representa el catálogo de libros.
+
+    Retorno:
+    - No devuelve valores explícitos.
+    - Actualiza la lista 'catalogo_lista' en memoria y el archivo 'catalogo.csv' 
+      mediante la función guardar_catalogo_en_csv().
+    """
+
+    # Validar título, existencia y stock > 0
+
+    while True:
+        print("\n\tPor favor, indique el título del libro que desea solicitar: ", end="")
+        libro_para_devolucion=validar_texto_vacio_y_normalizar()
+        if validar_titulo_ya_existe(catalogo_lista, libro_para_devolucion):
+            for libro in catalogo_lista:
+                if libro["TITULO"] == libro_para_devolucion:
+                    print(f"\t- {libro_para_devolucion}: {libro['CANTIDAD']} ejemplares")
+                    
+                    # Libro encontrado -> Devolver un libro: sumar 1
+                    libro["CANTIDAD"] += 1
+
+                    guardar_catalogo_en_csv(catalogo_lista)
+                    print(f"\n\t✅ Se ha realizado la devolución de '{libro_para_devolucion}'.")
+                    print(f"\tQuedan {libro['CANTIDAD']} ejemplares disponibles.")
+                    return
+
+
+        # Si el libro no es válido, dar la opción de intentar con otro o regresar al menú principal
+        else:
+            print("\n\tDisculpe, pero ese libro no está en el inventario")
+        
+            quiere_salir = input("\t¿Desea devolver otro libro? (presione 's' para salir): ").strip().lower()
+            if quiere_salir=="s":
+                    print("\tVolvemos al menú principal")
+                    return
+
+
+# ******************* Funciones de la estructura del Menú *******************
 def mostrar_menu():
     # Opciones del menú
     print ("-"*40)
@@ -472,14 +608,12 @@ def menu_principal(catalogo_lista):
             case 6:
                 ingresar_titulos_individualmente(catalogo_lista)
             case 7:
-                # Préstamo: restar 1 solo si CANTIDAD > 0.
-                # Devolución: sumar 1.
-                #actualizar_ejemplares_1(catalogo)
-                pass # Luego lo completo
+                actualizar_ejemplares(catalogo_lista)
             case 8:
                 print("¡Gracias por usar el sistema! \n¡Hasta Pronto!")
                 break
 
+# ******************* Para ejecutar el programa *******************
 catalogo_lista=obtener_catalogo_desde_csv()
 menu_principal(catalogo_lista)
 
